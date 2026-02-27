@@ -45,9 +45,7 @@ func (l *lexer) scanToken() {
 	}
 
 	if unicode.IsLetter(rune(ch)) {
-		l.advance()
-		ident := l.scanIdentifier()
-		l.push(newToken(tokens.LookupIdent(ident), ident))
+		l.scanIdentifier()
 		return
 	}
 
@@ -107,7 +105,7 @@ func (l *lexer) scanString() {
 	l.push(newToken(tokens.STRING, value))
 }
 
-func (l *lexer) scanIdentifier() string {
+func (l *lexer) scanIdentifier() {
 	start := l.pos
 
 	for !l.atEof() {
@@ -121,7 +119,7 @@ func (l *lexer) scanIdentifier() string {
 
 	value := l.input[start:l.pos]
 	l.push(newToken(tokens.IDENT, value))
-	return l.input[start:l.pos]
+	// return l.input[start:l.pos]
 }
 
 func (l *lexer) scanBoolean() {
