@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"fmt"
 	"foo/tokens"
 )
 
@@ -36,7 +37,7 @@ func (p *parser) expectError(expectedKind tokens.TokenType, err any) tokens.Toke
 
 	if kind != expectedKind {
 		if err == nil {
-			panic(err)
+			panic(fmt.Sprintf("expected token %s but got %s at position %d", tokens.TokenKindString(expectedKind), tokens.TokenKindString(kind), p.pos))
 		}
 
 		panic(err)

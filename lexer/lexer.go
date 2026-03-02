@@ -118,8 +118,8 @@ func (l *lexer) scanIdentifier() {
 	}
 
 	value := l.input[start:l.pos]
-	l.push(newToken(tokens.IDENT, value))
-	// return l.input[start:l.pos]
+	kind := tokens.LookupIdent(value)
+	l.push(newToken(kind, value))
 }
 
 func (l *lexer) scanBoolean() {

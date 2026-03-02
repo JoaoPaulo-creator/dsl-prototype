@@ -1,5 +1,7 @@
 package tokens
 
+import "fmt"
+
 type TokenType string
 
 const (
@@ -45,8 +47,8 @@ const (
 
 	ASSIGNMENT = "assignment"
 
-	STRING
-	BOOL
+	STRING = "string"
+	BOOL   = "bool"
 )
 
 type Token struct {
@@ -55,9 +57,18 @@ type Token struct {
 }
 
 var keywords = map[string]TokenType{
-	"set":     SET,
-	"env":     ENV,
-	"product": PRODUTO,
+	"set":       SET,
+	"options":   OPTIONS,
+	"env":       ENV,
+	"product":   PRODUTO,
+	"promise":   PROMISE,
+	"proposal":  PROPOSAL,
+	"approve":   APPROVE,
+	"send_data": SEND_DATA,
+	"debug":     DEBUG,
+	"save":      SAVE,
+	"filename":  FAILENAME,
+	"dir":       DIR,
 }
 
 func LookupIdent(ident string) TokenType {
@@ -66,4 +77,55 @@ func LookupIdent(ident string) TokenType {
 	}
 
 	return IDENT
+}
+
+func TokenKindString(kind TokenType) string {
+	switch kind {
+	case EOF:
+		return "eof"
+	case ENV:
+		return "env"
+	case SET:
+		return "set"
+	case PRODUCT:
+		return "product"
+	case PROMISE:
+		return "promises"
+	case PROPOSAL:
+		return "proposal"
+	case APPROVE:
+		return "approve"
+	case SEND_DATA:
+		return "send_data"
+	case VEICULO:
+		return "veiculo"
+	case AVALISTA:
+		return "avalista"
+	case OPTIONS:
+		return "options"
+	case DEBUG:
+		return "debug"
+	case SAVE:
+		return "save"
+	case L_CURL:
+		return "left_curly"
+	case R_CURL:
+		return "right_curly"
+	case COMMA:
+		return "comma"
+	case L_BRACE:
+		return "left_bracket"
+	case R_BRACE:
+		return "right_bracket"
+	case IDENT:
+		return "identifier"
+	case L_PAREN:
+		return "left_parenthesis"
+	case R_PAREN:
+		return "left_parenthesis"
+	case ASSIGNMENT:
+		return "assignment"
+	default:
+		return fmt.Sprintf("unkown(%s)", kind)
+	}
 }

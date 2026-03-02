@@ -1,14 +1,8 @@
 set {
-    env = dev
-    product = carro, 
-    promise = [veiculo, avalista, equipamento], 
+    env = dev,
+    product = carro,
+    promise = [veiculo, avalista, equipamento],
     proposal = true,
     approve = true, -- approva analise de credito
     send_data = true, -- envia os dados da garantia
 }
-
-options {
-    debug = true
-    save = [filename = "resultado.txt", dir = "."]
-}
-
